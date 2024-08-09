@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streaming Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/download.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1>Eliot Streaming Platform</h1>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="pesquisar.html">Pesquisar</a></li>
+                <li><a href="sobre.html">Sobre nós</a></li>
+                <li><a href="contato.html">Contatos</a></li>
+            </ul>
+        </nav>
+        <form id="search-form">
+            <input type="text" id="search-input" placeholder="Pesquisar filmes e séries...">
+            <button type="submit">Pesquisar</button>
+        </form>
+    </header>
+    <main>
+        <section id="movies">
+            <h2>Movies</h2>
+            <div id="movie-list"></div>
+        </section>
+        <section id="series">
+            <h2>Series</h2>
+            <div id="series-list"></div>
+        </section>
+        <section id="video-player" style="display: none;">
+            <h2>Watch Trailer</h2>
+            <iframe id="trailer" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

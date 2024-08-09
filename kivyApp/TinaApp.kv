@@ -1,0 +1,220 @@
+<GerenciadorTelas>:
+    PrimeiraTela:
+        name: "PrimeiraTela"
+    SegundaTela:
+        name: "SegundaTela"
+    VerHoras:
+        name: "createparty"
+    FalarTina:
+        name: "falartina"
+    ChatTina:
+        name: "chattina"
+
+<PrimeiraTela>:
+    canvas:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+           
+    BoxLayout:
+        orientation: "vertical"
+        padding: 30, 20
+        spacing: 100
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 5
+            Image:
+                source: "data/background.jpg"
+                radius: [20]
+            Label:
+                text: "Eliobros Tech"
+                color: 0, 0, 0, 1
+                bold: True
+                size_hint_y: None
+                font_size: 25
+                height: 40
+            BoxLayout:  # Adicionado o ':' aqui
+                orientation: "vertical"
+                spacing: 20
+                size_hint_y: 1
+                BotaoMenu:
+                    text: "Ver Horas"
+                    bold: True
+                    font_size: 20
+                    size_hint_y: None
+                    height: 50
+                    on_release:
+                        app.root.current = "createparty"
+                        app.root.direction = "left"
+                BotaoMenu:
+                    text: "Acessar festa"
+                    bold: True
+                    font_size: 20
+                    size_hint_y: None
+                    height: 50
+                BotaoMenu:
+                    text: "Falar com Tina"
+                    bold: True
+                    font_size: 20
+                    size_hint_y: None
+                    height: 50
+                    on_release:
+                        app.root.current = "falartina"
+                        app.root.transition.direction = "left"
+
+<FalarTina>:
+    BoxLayout:
+        canvas:
+            Color:
+                rgba: 14/255.0, 21/255.0, 54/255.0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        orientation: "vertical"
+        padding: root.width * 0.20, root.height * 0.2
+        Label:
+            text: "Deseja conversar com Tina"
+            bold: True
+            font_size: 30
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+            BotaoMenu:
+                text: "sim continuar"
+                bold: True
+                font_size: 20
+                size_hint_y: None
+                height: 50
+                on_release:
+                    app.root.current = "chattina"
+                    app.root.direction = "left"
+            BotaoMenu:
+                text: "nao voltar"
+                bold: True
+                font_size: 20
+                size_hint_y: None
+                height: 50
+                on_release:
+                    app.root.current = "PrimeiraTela"
+                    app.root.transition.direction = "right"
+
+<CreateParty>:
+    BoxLayout:
+        canvas:
+            Color:
+                rgba: 14/255.0, 21/255.0, 54/255.0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        orientation: "vertical"
+        padding: root.width * 0.20, root.height * 0.2
+        Label:
+            text: "Deseja criar uma festa?"
+            bold: True
+            font_size: 30
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+            BotaoMenu:
+                text: "sim continuar"
+                bold: True
+                font_size: 20
+                size_hint_y: None
+                height: 50
+                on_release:
+                    app.root.current = "verhoras"
+            BotaoMenu:
+                text: "nao voltar"
+                bold: True
+                font_size: 20
+                size_hint_y: None
+                height: 50
+                on_release:
+                    app.root.current = "PrimeiraTela"
+                    app.root.transition.direction = "right"
+
+<ChatTina>:
+    BoxLayout:
+        canvas:
+            Color:
+                rgba: 14/255.0, 21/255.0, 54/255.0, 1
+
+        orientation: "vertical"
+        spacing: 10
+        padding: 10
+
+    ScrollView:
+        id: scroll_chat
+        BoxLayout:
+            id: messages_box
+            orientation: 'vertical'
+            size_hint_y: None
+            height: self.minimum_height
+
+    BoxLayout:
+        size_hint_y: None
+        height: '50dp'
+        
+        TextInput:
+            id: input_message
+            multiline: False
+            hint_text: "Digite uma mensagem"
+            on_text_validate: root.send_message()
+        
+        Button:
+            background_normal: 'data/send.png'
+            size_hint_x: None
+            width: '100dp'
+            on_release: root.send_message()
+        Button:
+            text: "Voltar"
+            size_hint_x: None
+            width: '100dp'
+            on_release: app.root.current = "PrimeiraTela"
+            
+<VerHoras>:
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 14/255.0, 21/255.0, 54/255.0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Button:
+            background_normal: 'data/icone.png'  # Caminho para a imagem do ícone
+            size_hint: None, None
+            size: "50dp", "50dp"
+            pos_hint: {"left": 1, "top": 1}
+            on_release: app.root.current = "PrimeiraTela"
+        
+        Label:
+            id: hora_label
+            font_size: '48sp'
+            size_hint: None, None
+            size: self.texture_size
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            text: "Hora Atual: "
+
+
+
+
+
+          
+           
+
+
+
+
+<BotaoMenu@ButtonBehavior+Label>:
+    canvas.before:
+        Color:  # Corrigido para 'Color' em vez de 'color'
+            rgba: 0.1, 0.5, 0.7, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [20]
+    bold: True
+    font_size: 20
